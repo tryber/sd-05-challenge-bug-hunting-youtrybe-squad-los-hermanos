@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
+import * as api from '../../api/service.js';
 import '../../css/searchBar.css';
 
 class SearchBar extends Component {
@@ -16,6 +16,10 @@ class SearchBar extends Component {
   handleSearchInput(event) {
 		const { target: { value } } = event;
     this.setState({ searchInput: value});
+  }
+
+  handleClick() {
+    api.searchVideos();
   }
 
   render() {
@@ -34,6 +38,7 @@ class SearchBar extends Component {
           <Link
             className="material-icons search-icon"
             to={`/results/${searchInput}`}
+            onClick={this.handleClick}
           >
             search
           </Link>
